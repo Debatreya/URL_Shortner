@@ -1,6 +1,7 @@
 const express = require("express");
 const {connectDB} = require("./connect")
 const urlRoute = require("./routes/url")
+const cors = require("cors");
 require('dotenv').config();
 const app = express();
 const PORT = 8000;
@@ -10,6 +11,12 @@ connectDB(MongoURI).then(()=> console.log("mongoDB connected"))
 
 // Middleware
 app.use(express.json())
+
+// Enable CORS for "localhost:5173"
+const corsOptions = {
+    origin: "http://localhost:5173"
+};
+app.use(cors(corsOptions));
 
 app.use("/url", urlRoute)
 app.use("/", urlRoute)
