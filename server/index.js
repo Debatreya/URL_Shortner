@@ -4,7 +4,7 @@ const urlRoute = require("./routes/url")
 const cors = require("cors");
 require('dotenv').config();
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 5000;
 
 const MongoURI = process.env.MONGO_URI;
 connectDB(MongoURI).then(()=> console.log("mongoDB connected"))
@@ -14,7 +14,7 @@ app.use(express.json())
 
 // Enable CORS for "localhost:5173"
 const corsOptions = {
-    origin: "http://localhost:5173"
+    origin: process.env.FRONTEND_URL || "http://localhost:5173"
 };
 app.use(cors(corsOptions));
 
