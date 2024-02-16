@@ -14,7 +14,7 @@ app.use(express.json())
 
 // Enable CORS for "localhost:5173"
 const corsOptions = {
-    origin: process.env.FRONTEND_URL
+    origin: 'https://url-shortner-two-chi.vercel.app/' 
     // origin: "http://localhost:5173"
 };
 app.use(cors(corsOptions));
