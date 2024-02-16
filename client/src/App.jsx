@@ -6,7 +6,7 @@ export default function App(){
   return (
     <div>
       <h1 className="text-4xl text-yellow-500 font-bold my-10 text-center font-serif tracking-widest">
-        URL Shortner
+        URL Encrypter
       </h1>
       <div className="flex flex-col justify-center mx-10">
         <UrlForm />
