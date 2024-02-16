@@ -14,7 +14,8 @@ app.use(express.json())
 
 // Enable CORS for "localhost:5173"
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173"
+    origin: process.env.FRONTEND_URL
+    // origin: "http://localhost:5173"
 };
 app.use(cors(corsOptions));
 

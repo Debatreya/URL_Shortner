@@ -13,11 +13,16 @@ export default function UrlForm(){
         const reqBody = {
             url: url
         }
+        // Change this before Push to production
+
         const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://url-shortner-backend-zpn2.onrender.com'
+        // const backendUrl = "http://localhost:8000"
+
+        // 
         try {
             const res = await axios.post(`${backendUrl}/url`, reqBody);
             toast.success("Short Url Generated!!!")
-            setShortUrl(`${backendUrl}/res.data.id`);
+            setShortUrl(`${backendUrl}/${res.data.id}`);
         } catch (error) {
             console.log(error);
             toast.error(error.message)

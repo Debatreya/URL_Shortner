@@ -27,10 +27,14 @@ const handleRedirect = async (req, res) => {
                 },
             }
         );
-        res.redirect(entry.redirectURL);
+        // console.log(entry.redirectURL);
+        return res.redirect(entry.redirectURL);
     }
     catch(err){
-        res.status(400).json( {msg: "ID not found"} )
+        res.status(400).json( {
+            msg: "ID not found",
+            error: err.message
+        } )
     }
 }
 const handleGetAnalytics = async (req, res) => {
