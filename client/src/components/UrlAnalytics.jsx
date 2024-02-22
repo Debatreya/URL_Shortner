@@ -9,9 +9,14 @@ export default function UrlAnalytics(){
   // const backendUrl = "http://localhost:8000"
 
   // 
+  const updateUrl = (e) => {
+    setUrl(e.target.value);
+  }
   const getAnalytics = async() => {
     try {
-      const res = await fetch(`${backendUrl}/analytics/${url}`);
+      const shortId = url.match(`${backendUrl}/(.*)`)[1];
+      console.log(shortId);
+      const res = await fetch(`${backendUrl}/analytics/${shortId}`);
       const data = await res.json();
       setClicks(data.totalClicks);
     } catch (error) {
@@ -19,16 +24,24 @@ export default function UrlAnalytics(){
     }
   }
   return (
-    <div>
+    <div className="flex flex-col justify-evenly w-full">
       <h1 className="text-4xl text-blue-500 font-bold my-4 font-sans">
         Url Analytics
       </h1>
-      <div>
+      <div className="flex items-center flex-wrap gap-4 sm:w-3/4 m-auto">
         <label htmlFor="url" className="text-2xl font-bold">Enter Encrypted Url</label>
-        <input type="text" id="url" name="url" className="p-2 border-2 border-gray-300 grow rounded-md" value={url} />
+        <input 
+          type="text" 
+          id="url" 
+          name="url" 
+          className="p-2 border-2 border-gray-300 grow rounded-md" 
+          onChange={updateUrl} 
+          value={url} 
+          placeholder="Enter full encrypted url here.."
+        />
         <button className="bg-blue-500 text-white font-bold p-2 rounded-md min-w-[200px]" onClick={getAnalytics}>Get Analytics</button>
-        <h2>Number of Clicks <span>{clicks}</span></h2>
       </div>
+        <h2 className="text-4xl text-center text-yellow-500 font-bold my-4 font-sans">Number of Clicks: <span className="text-blue-300">{clicks}</span></h2>
     </div>
   )
 }
